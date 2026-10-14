@@ -1,0 +1,16 @@
+{
+  "name": "trace-hpc-benchmark",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=@trace/benchmark-web",
+    "build": "npm run build --workspace=@trace/benchmark-web",
+    "preview": "npm run preview --workspace=@trace/benchmark-web",
+    "typecheck": "npm run typecheck --workspace=@trace/vector-matrix-core"
+  }
+}
