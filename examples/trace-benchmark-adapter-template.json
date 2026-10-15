@@ -1,0 +1,12 @@
+{
+  "metadata": {
+    "id": "my-library",
+    "name": "My uploaded library",
+    "version": "1.0.0",
+    "environment": "browser",
+    "description": "Adapter for a browser numerical library.",
+    "operations": ["matrixVectorMultiply"],
+    "matrixFormats": ["dense"]
+  },
+  "module": "export function createAdapter() {\n  return {\n    prepare({ testCase, inputs }) {\n      if (testCase.operation !== \"matrixVectorMultiply\" || !inputs.leftMatrix) return null;\n      const matrix = inputs.leftMatrix.data;\n      const vector = inputs.vector;\n      const rows = inputs.leftMatrix.rows;\n      const columns = inputs.leftMatrix.columns;\n      return {\n        execute() {\n          let first = 0;\n          for (let row = 0; row < rows; row += 1) {\n            let sum = 0;\n            const offset = row * columns;\n            for (let column = 0; column < columns; column += 1) sum += matrix[offset + column] * vector[column];\n            if (row === 0) first = sum;\n          }\n          return first;\n        },\n        densityActual: testCase.densityRequested,\n        nnz: 0,\n        ellpackStorageSlots: 0,\n        ellpackPaddingRatio: 0,\n        estimatedMemoryBytes: matrix.byteLength + vector.byteLength\n      };\n    }\n  };\n}\n"
+}

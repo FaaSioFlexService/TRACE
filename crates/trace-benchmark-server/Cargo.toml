@@ -1,0 +1,29 @@
+# Servidor nativo de benchmarks de TRACE.
+# La API expone el mismo contrato conceptual que el navegador, pero ejecuta
+# kernels nativos y selecciona CPU/GPU segun la politica solicitada.
+[package]
+name = "trace-benchmark-server"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[features]
+default = []
+openblas = []
+blis = []
+onemkl = []
+aocl = []
+eigen = []
+armpl = []
+accelerate = []
+cublas = []
+rocblas = []
+nvpl = []
+
+[dependencies]
+axum = "0.8"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "net"] }
+trace-gpu = { path = "../trace-gpu", features = ["native-gpu"] }
+trace-numerical-core = { path = "../trace-numerical-core" }

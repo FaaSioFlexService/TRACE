@@ -5,8 +5,10 @@
     "moduleResolution": "Bundler",
     "strict": true,
     "declaration": true,
-    "skipLibCheck": true,
-    "noEmit": true
+    "sourceMap": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "skipLibCheck": true
   },
-  "include": ["src"]
+  "include": ["src/**/*.ts"]
 }

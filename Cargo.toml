@@ -1,0 +1,25 @@
+# TRACE HPC Benchmark Lab - Rust workspace.
+# El workspace separa el core numerico nativo, el servidor y el backend GPU.
+[workspace]
+resolver = "2"
+members = [
+  "crates/trace-numerical-core",
+  "crates/trace-numerical-wasm",
+  "crates/trace-benchmark-server",
+  "crates/trace-gpu",
+]
+
+[workspace.package]
+edition = "2021"
+license = "MIT"
+version = "0.5.0"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = "symbols"
+
+[profile.release.package.trace-numerical-core]
+opt-level = 3

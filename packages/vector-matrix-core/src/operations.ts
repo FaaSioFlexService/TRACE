@@ -6,7 +6,9 @@
  * threads o GPU sin modificar la API pública.
  */
 
+import { cscMatrixVectorMultiply } from "./cscMatrix";
 import { csrMatrixVectorMultiply } from "./csrMatrix";
+import { ellpackMatrixVectorMultiply } from "./ellpackMatrix";
 import { denseMatrixMultiply, denseMatrixVectorMultiply } from "./denseMatrix";
 import type { Matrix, Vector, DenseMatrix } from "./types";
 
@@ -19,6 +21,14 @@ export function matrixVectorMultiply(
 ): Vector {
   if ("rowPointers" in matrix) {
     return csrMatrixVectorMultiply(matrix, vector);
+  }
+
+  if ("columnPointers" in matrix) {
+    return cscMatrixVectorMultiply(matrix, vector);
+  }
+
+  if ("maxNonZerosPerRow" in matrix) {
+    return ellpackMatrixVectorMultiply(matrix, vector);
   }
 
   return denseMatrixVectorMultiply(matrix, vector);

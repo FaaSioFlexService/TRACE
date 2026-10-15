@@ -1,0 +1,15 @@
+[package]
+name = "trace-numerical-wasm"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+js-sys = "0.3"
+serde = { version = "1", features = ["derive"] }
+serde-wasm-bindgen = "0.6"
+trace-numerical-core = { path = "../trace-numerical-core", default-features = false }
+wasm-bindgen = "0.2"

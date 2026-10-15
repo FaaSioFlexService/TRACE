@@ -1,16 +1,23 @@
 {
   "name": "trace-hpc-benchmark",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.5.0",
   "type": "module",
   "workspaces": [
     "packages/*",
     "apps/*"
   ],
   "scripts": {
+    "predev": "npm run build --workspace=@trace/vector-matrix-core",
     "dev": "npm run dev --workspace=@trace/benchmark-web",
-    "build": "npm run build --workspace=@trace/benchmark-web",
+    "build": "npm run build --workspace=@trace/vector-matrix-core && npm run build --workspace=@trace/benchmark-web",
     "preview": "npm run preview --workspace=@trace/benchmark-web",
-    "typecheck": "npm run typecheck --workspace=@trace/vector-matrix-core"
+    "typecheck": "npm run typecheck:core && npm run typecheck:web",
+    "typecheck:core": "npm run typecheck --workspace=@trace/vector-matrix-core",
+    "typecheck:web": "npm run typecheck --workspace=@trace/benchmark-web",
+    "rust:check": "cargo check --workspace",
+    "rust:test": "cargo test --workspace",
+    "server": "cargo run -p trace-benchmark-server --release",
+    "wasm:build": "wasm-pack build crates/trace-numerical-wasm --target web --release --out-dir apps/benchmark-web/public/wasm --out-name trace_numerical_wasm"
   }
 }

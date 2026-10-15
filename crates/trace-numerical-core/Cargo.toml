@@ -1,0 +1,21 @@
+# Core numerico nativo de TRACE.
+# No depende de una biblioteca numérica externa: Rayon se utiliza únicamente
+# como runtime de paralelismo de datos; los kernels algebraicos son propios.
+[package]
+name = "trace-numerical-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[features]
+default = ["parallel"]
+parallel = []
+
+[lib]
+name = "trace_numerical_core"
+path = "src/lib.rs"
+
+[dependencies]
+rayon = "1.12"
+
+[dev-dependencies]

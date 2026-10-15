@@ -1,6 +1,6 @@
 {
   "name": "@trace/benchmark-web",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,12 +10,18 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@trace/vector-matrix-core": "0.1.0",
+    "@trace/vector-matrix-core": "0.5.0",
     "@vitejs/plugin-react": "^4.3.0",
     "vite": "^6.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "ml-matrix": "6.15.0",
+    "ndarray": "1.0.18",
+    "ndarray-ops": "1.2.2",
+    "ndarray-blas-gemv": "1.0.4"
   },
   "devDependencies": {}
 }

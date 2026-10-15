@@ -1,0 +1,17 @@
+# Backend GPU opcional de TRACE.
+# wgpu permite usar el mismo contrato en Vulkan/Metal/DX12 y WebGPU cuando
+# corresponda, evitando acoplar el core numerico a un proveedor concreto.
+[package]
+name = "trace-gpu"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[features]
+default = []
+native-gpu = ["dep:pollster", "dep:wgpu"]
+
+[dependencies]
+pollster = { version = "0.4", optional = true }
+serde = { version = "1", features = ["derive"] }
+wgpu = { version = "30", optional = true }
